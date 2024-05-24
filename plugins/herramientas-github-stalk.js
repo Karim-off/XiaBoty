@@ -18,7 +18,7 @@ let gata = `*⬤── 「 𝙂𝙄𝙏𝙃𝙐𝘽 𝙎𝙏𝘼𝙇𝙆 」 ─
 await conn.sendFile(m.chat, logogit, 'githubstalk.jpg', gata, m)
 } catch (e) {
 await conn.sendMessage(m.chat, {text: `${lenguajeGB['smsMalError3']()}#report ${lenguajeGB['smsMensError2']()} ${usedPrefix + command}\n\n${wm}`, edit: key})
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(`❗❗ 𝙀𝙨𝙩𝙖 𝙁𝙖𝙡𝙡𝙖𝙣𝙙𝙤 𝙚𝙡 𝙨𝙞𝙜𝙪𝙞𝙚𝙣𝙩𝙚 𝙘𝙤𝙢𝙖𝙣𝙙𝙤 ${usedPrefix + command} ❗❗`)
 console.log(e)}}
 handler.help = ['githubstalk'].map(v => v + ' <query>')
 handler.tags = ['internet']
