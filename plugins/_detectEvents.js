@@ -94,6 +94,6 @@ export async function before(m, {conn, participants}) {
     let txt7 = `*Recientemente se ha cambiado el nombre del grupo.*\n\n`;
     txt7 += `*◦  Nuevo nombre:* ${'```' + groupName + '```'}\n`;
     txt7 += `*◦  Ejecutado por:* @${m.sender.split`@`[0]}`;
-    await conn.sendMessage(m.chat, {image: {url: pp}, caption: txt7, mentions: mentionsContentM}, {quoted: fkontak2});
+    await conn.sendMessage(m.chat, {image: img, caption: txt7, mentions: mentionsContentM}, {quoted: fkontak2});
   }
 } /* Cierre del comando */
