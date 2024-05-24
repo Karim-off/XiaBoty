@@ -1,32 +1,37 @@
 import axios from 'axios'
-var handler = async(m, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.reply(m.chat, '*🔮 INGRESE EL NOMBRE DE UN USUARIO DE GIT HUB*', m)
-try {
-await mensajesEditados(conn, m)
-let request = await githubstalk(text) 
-let { username, following, followers, type, bio, company, blog, location, email, public_repo, public_gists, profile_pic } = request
-let thumb = await (profile_pic)
-let gata = `*⬤── 「 𝙂𝙄𝙏𝙃𝙐𝘽 𝙎𝙏𝘼𝙇𝙆 」 ──⬤*
-𝙐𝙨𝙪𝙖𝙧𝙞𝙤: ${username}
-𝘽𝙞𝙤𝙜𝙧𝙖𝙛𝙞𝙖: ${bio}
-𝘾𝙤𝙢𝙥𝙖𝙣𝙞𝙖: ${company}
-𝘾𝙤𝙧𝙧𝙚𝙤: ${email}
-𝙍𝙚𝙥𝙤𝙨𝙞𝙩𝙤𝙧𝙞𝙤𝙨 𝙥𝙪𝙗𝙡𝙞𝙘𝙤𝙨: ${public_repo}
-𝙎𝙚𝙜𝙪𝙞𝙙𝙤𝙧: ${followers}
-𝙎𝙞𝙜𝙪𝙞𝙙𝙤𝙧𝙚𝙨: ${following}
-𝙐𝙗𝙞𝙘𝙖𝙘𝙞𝙤𝙣: ${location}`
-await conn.sendFile(m.chat, logogit, 'githubstalk.jpg', gata, m)
-} catch (e) {
-await conn.sendMessage(m.chat, {text: `${lenguajeGB['smsMalError3']()}#report ${lenguajeGB['smsMensError2']()} ${usedPrefix + command}\n\n${wm}`, edit: key})
-console.log(`❗❗ 𝙀𝙨𝙩𝙖 𝙁𝙖𝙡𝙡𝙖𝙣𝙙𝙤 𝙚𝙡 𝙨𝙞𝙜𝙪𝙞𝙚𝙣𝙩𝙚 𝙘𝙤𝙢𝙖𝙣𝙙𝙤 ${usedPrefix + command} ❗❗`)
-console.log(e)}}
+var handler = async(m, { conn, text }) => {
+
+  if (!text) return conn.reply(m.chat, 'Harap Masukan Username', m)
+
+  await m.reply('Searching...')
+  let request = await githubstalk(text) 
+    let { username, following, followers, type, bio, company, blog, location, email, public_repo, public_gists, profile_pic, created_at, updated_at, html_url, name } = request
+    let thumb = await getBuffer(profile_pic)
+    let hasil = `*â”€â”€ ã€Œ GITHUB STALK ã€ â”€â”€*\n
+âž¸ *Username*: ${username} (${name})
+âž¸ *LINK*: ${html_url}
+âž¸ *Link Gists:* https://gist.github.com/${username}/
+âž¸ *Bio*: ${bio}
+âž¸ *Perusahaan*: ${company}
+âž¸ *Email:* ${email}
+âž¸ *Blog:* ${blog}
+âž¸ *Repo Publik:* ${public_repo}
+âž¸ *Gists Publik:* ${public_gists}
+âž¸ *Follower:* ${followers}
+âž¸ *Following:* ${following}
+âž¸ *Lokasi:* ${location}
+âž¸ *Type:* ${type}
+âž¸ *Akun Dibuat sejak:* ${created_at}
+âž¸ *Akun Diupdate sejak:* ${updated_at}
+`
+
+    conn.sendFile(m.chat, thumb, 'githubstalk.jpg', hasil, m)
+}
 handler.help = ['githubstalk'].map(v => v + ' <query>')
 handler.tags = ['internet']
 handler.command = /^(githubstalk)$/i
 
 export default handler
-
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 async function githubstalk(user) {
     return new Promise((resolve, reject) => {
@@ -34,12 +39,12 @@ async function githubstalk(user) {
         .then(({ data }) => {
             let hasil = {
                 username: data.login,
-                nickname: data.name,
+                name: data.name,
                 bio: data.bio,
                 id: data.id,
                 nodeId: data.node_id,
                 profile_pic: data.avatar_url,
-                url: data.html_url,
+                html_url: data.html_url,
                 type: data.type,
                 admin: data.site_admin,
                 company: data.company,
@@ -50,7 +55,7 @@ async function githubstalk(user) {
                 public_gists: data.public_gists,
                 followers: data.followers,
                 following: data.following,
-                ceated_at: data.created_at,
+                created_at: data.created_at,
                 updated_at: data.updated_at
             }
             resolve(hasil)
