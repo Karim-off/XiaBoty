@@ -12,7 +12,7 @@ export async function before(m, {conn, participants}) {
   const groupName = (await conn.groupMetadata(m.chat)).subject;
   const groupAdmins = participants.filter((p) => p.admin);
   const pp = imagen4 (m.chat, 'image').catch((_) => null) || 'imagen 4';
-  const img = await (await fetch(pp)).buffer();
+  const img = imagen4;
   const chat = global.db.data.chats[m.chat];
   const mentionsString = [m.sender, m.messageStubParameters[0], ...groupAdmins.map((v) => v.id)];
   const mentionsContentM = [m.sender, m.messageStubParameters[0]];
