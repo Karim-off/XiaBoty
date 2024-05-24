@@ -1,42 +1,102 @@
+import fetch from 'node-fetch';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import fetch from 'node-fetch';
-const handler = async (m, {conn, args, usedPrefix, command}) => {
-  if (!args[0]) throw `𝙄𝙣𝙜𝙧𝙚𝙨𝙚 𝙚𝙡 𝙣𝙤𝙢𝙗𝙧𝙚 𝙙𝙚 𝙪𝙣 𝙪𝙨𝙪𝙖𝙧𝙞𝙤 𝙙𝙚 𝙄𝙣𝙨𝙩𝙖𝙜𝙧𝙖𝙢. 𝙀𝙟𝙚𝙢𝙥𝙡𝙤 ${usedPrefix + command} usxr_angelito`;
-  const res = await igstalk(args[0].replace(/^@/, ''));
-  const res2 = await fetch(`https://api.lolhuman.xyz/api/stalkig/${args[0].replace(/^@/, '')}?apikey=${lolkeysapi}`);
-  const res3 = await res2.json();
-  const json = JSON.parse(JSON.stringify(res));
-  const iggs = `
-▢ *Username:* ${json.username}
-▢ *Nickname:* ${json.fullname}
-▢ *Followers:* ${json.followers}
-▢ *Following:* ${json.following}
-▢ *Posting:* ${json.post}
-▢ *Link:* https://instagram.com/${json.username.replace(/^@/, '')}
-▢ *Bio:* ${json.bio}`.trim();
-  const aa = `${res3.result.photo_profile || res.profile}`;
-  await conn.sendFile(m.chat, aa, 'error.jpg', iggs, m);
-};
-handler.help = ['igstalk <username>'];
-handler.tags = ['internet'];
-handler.command = /^(igstalk)$/i;
-export default handler;
 
 async function igstalk(Username) {
-  return new Promise((resolve, reject) => {
-    axios.get('https://dumpor.com/v/'+Username, {
-      headers: {'cookie': '_inst_key=SFMyNTY.g3QAAAABbQAAAAtfY3NyZl90b2tlbm0AAAAYWGhnNS1uWVNLUU81V1lzQ01MTVY2R0h1.fI2xB2dYYxmWqn7kyCKIn1baWw3b-f7QvGDfDK2WXr8', 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'}}).then((res) => {
-      const $ = cheerio.load(res.data);
+  try {
+    const trResponse = await axios.get(`https://tr.deployers.repl.co/igstalk?user=${Username}`);
+    if (trResponse.status === 200) {
+      return trResponse.data;
+    } else {
+      throw new Error('Failed to fetch Instagram profile');
+    }
+  } catch (error) {
+    try {
+      const dumpoirResponse = await axios.get(`https://dumpoir.com/v/${Username}`, {
+        headers: {
+          'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0'
+        }
+      });
+
+      const $ = cheerio.load(dumpoirResponse.data);
       const result = {
-        profile: $('#user-page > div.user > div.row > div > div.user__img').attr('style').replace(/(background-image: url\(\'|\'\);)/gi, ''),
-        fullname: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > div > a > h1').text(),
-        username: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > div > h4').text(),
-        post: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(1)').text().replace(' Posts', ''),
-        followers: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(2)').text().replace(' Followers', ''),
-        following: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(3)').text().replace(' Following', ''),
-        bio: $('#user-page > div.user > div > div.col-md-5.my-3 > div').text()};
-      resolve(result);
-    });
-  });
+        bio: $('#user-page > div.user > div > div.col-md-5.my-3 > div').text().trim(),
+        credits: 'Xnuvers007 (https://github.com/Xnuvers007)',
+        followers: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(2)')
+          .text()
+          .replace(' Followers', '')
+          .trim(),
+        following: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(3)')
+          .text()
+          .replace(' Following', '')
+          .trim(),
+        fullname: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > div > a > h1').text().trim(),
+        post: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(1)')
+          .text()
+          .replace(' Posts', '')
+          .trim(),
+        profile: $('#user-page > div.user > div.row > div > div.user__img')
+          .attr('style')
+          .replace(/(background-image: url\(\'|\'\);)/gi, '')
+          .trim(),
+        status: 200,
+        url: `https://www.instagram.com/${Username.replace('@', '')}`,
+        username: `@${Username}`
+      };
+
+      return result;
+    } catch (e) {
+      if (e.response?.status === 404) {
+        throw new Error('Error: Akun tidak ditemukan');
+      } else if (e.response?.status === 403) {
+        throw new Error('Error: Akunnya Di Private');
+      } else {
+        throw new Error('Error: Failed to fetch Instagram profile');
+      }
+    }
+  }
 }
+
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+  if (!args[0]) throw `Example use ${usedPrefix}${command} username`;
+
+  try {
+    let res = await igstalk(args[0]);
+
+    let username = res.username;
+    let fullname = res.fullname;
+    let post = res.post;
+    let followe = res.followers;
+    let followi = res.following;
+    let bio = res.bio;
+    let pepe = res.profile;
+    let url = res.url;
+    let credits = res.credits;
+
+    let data = `
+ðŸ’Œ á´œsá´‡Ê€É´á´€á´á´‡ Â» ã€Œ ${username} ã€
+ðŸ“§ Ò“á´œÊŸÊŸÉ´á´€á´á´‡ Â» ã€Œ ${fullname} ã€
+ðŸŽ ${followe}  Ò“á´ÊŸÊŸá´á´¡á´‡Ê€s
+ðŸŽ€ ${followi} Ò“á´ÊŸÊŸá´á´¡ÉªÉ´É¢
+ðŸ“ á´˜á´sá´› ${post}
+ðŸ“‘ BÉªá´: ${bio}
+â˜£ url ${url}
+â˜£ Credits By ${credits}
+`.trim();
+
+if (pepe) {
+  let pp = await (await fetch(pepe)).buffer();
+  conn.sendFile(m.chat, pp, 'profile.jpg', data, m);
+} else {
+  conn.reply(m.chat, data, m);
+}
+} catch (error) {
+conn.reply(m.chat, error.message, m);
+}
+};
+
+handler.help = ['igstalk'].map(v => v + ' <username>');
+handler.tags = ['tools'];
+handler.command = /^(igstalk)$/i;
+
+export default handler;
