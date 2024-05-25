@@ -108,7 +108,7 @@ loadChatgptDB();
 
 /* ------------------------------------------------*/
 
-global.authFile = `MichiBot`;
+global.authFile = `XiaBot`;
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile);
 const msgRetryCounterMap = (MessageRetryMap) => { };
 const msgRetryCounterCache = new NodeCache()
@@ -156,10 +156,10 @@ global.conn = makeWASocket(connectionOptions);
                 process.exit(0)
             }
         } else {
-            numeroTelefono = await question(chalk.bgBlack(chalk.greenBright(`Por favor, escriba su número de WhatsApp 😍\nPor ejemplo: +51955095498 : `)))
+            numeroTelefono = await question(chalk.bgBlack(chalk.greenBright(`Por favor, escriba su número de WhatsApp 😍\nPor ejemplo: +59168683798 : `)))
             numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '')
             if (!Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
-                console.log(chalk.bgBlack(chalk.redBright("Comience con el código de país de su número de WhatsApp, Ejemplo: +51955095498")))
+                console.log(chalk.bgBlack(chalk.redBright("Comience con el código de país de su número de WhatsApp, Ejemplo: +59168683798")))
 
                 numeroTelefono = await question(chalk.bgBlack(chalk.greenBright(`Por favor, escriba su número de WhatsApp 😍\nPor ejemplo: +51955095498 : `)))
                 numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '')
@@ -281,7 +281,7 @@ console.log(chalk.bold.red(`=> Algo salio mal durante la eliminación, archivos 
 }}
 
 function purgeOldFiles() {
-const directories = ['./MichiBot/', './jadibts/']
+const directories = ['./XiaBot/', './jadibts/']
 const oneHourAgo = Date.now() - (60 * 60 * 1000)
 directories.forEach(dir => {
 readdirSync(dir, (err, files) => {
@@ -312,7 +312,7 @@ async function connectionUpdate(update) {
   }
   if (global.db.data == null) loadDatabase();
   if (update.qr != 0 && update.qr != undefined) {
-    console.log(chalk.yellow('🚩ㅤMichiBot te pide que escanees este codigo QR, porque expira en 60 segundos.'));
+    console.log(chalk.yellow('🔮ㅤXiaBot te pide que escanees este codigo QR, porque expira en 60 segundos.'));
   }
   if (connection == 'open') {
     console.log(chalk.yellow('▣──────────────────────────────···\n│\n│❧ 𝙲𝙾𝙽𝙴𝙲𝚃𝙰𝙳𝙾 𝙲𝙾𝚁𝚁𝙴𝙲𝚃𝙰𝙼𝙴𝙽𝚃𝙴 𝙰𝙻 𝚆𝙷𝙰𝚃𝚂𝙰𝙿𝙿 ✅\n│\n▣──────────────────────────────···'));
@@ -346,7 +346,7 @@ if (connection === 'close') {
     }
 }
   /*if (connection == 'close') {
-    console.log(chalk.yellow(`🚩ㅤConexion cerrada, por favor borre la carpeta ${global.authFile} y reescanee el codigo QR`));
+    console.log(chalk.yellow(`🔮ㅤConexion cerrada, por favor borre la carpeta ${global.authFile} y reescanee el codigo QR`));
   }*/
 }
 
