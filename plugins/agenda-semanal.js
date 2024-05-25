@@ -9,7 +9,7 @@ handler.help = ['agenda']
 handler.tags = ['internet']
 handler.command = /^(agendasemanal)$/
 handler.exp = 50
-handler.level = 3
+handler.level = 1
 export default handler
 
 
