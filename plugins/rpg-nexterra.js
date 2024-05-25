@@ -5,7 +5,7 @@ let url = nexterra[Math.floor(Math.random() * pies.length)]
 conn.sendFile(m.chat, url, 'error.jpg', `*🔮 MAPA NEXTERRA🔮*`, m)
 //conn.sendButton(m.chat, `🔮 AGENDA SEMANAL 🔮`, author, url, [['𝙎𝙄𝙂𝙐𝙄𝙀𝙉𝙏𝙀 | 𝙉𝙀𝙓𝙏 🆕', `/${command}`]], m)
 }
-handler.help = ['agenda']
+handler.help = ['mapa']
 handler.tags = ['internet']
 handler.command = /^(nexterra|mapanexterra)$/
 handler.exp = 50
