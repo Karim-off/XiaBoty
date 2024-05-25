@@ -13,6 +13,6 @@ handler.level = 0
 export default handler
 
 
-global.pies = [
+global.agenda = [
 "https://cdn.discordapp.com/attachments/1234592983794454530/1243658949845061773/FB_IMG_1716581761671.jpg?ex=66524727&is=6650f5a7&hm=e5c4849fbc960bb0985a0de136a4e449e1aa36d00c30e897d27c9e38546ec39b&",
 ]
