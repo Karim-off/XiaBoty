@@ -1,56 +1,18 @@
-let handler = async (m, { isPrems, conn }) => {
-let time = global.db.data.users[m.sender].lastcofre + 0 // 36000000 10 Horas //86400000 24 Horas
+import fetch from 'node-fetch'
+let handler = async (m, { conn, command }) => {
 if (new Date - global.db.data.users[m.sender].lastcofre < 0) throw `[❗𝐈𝐍𝐅𝐎❗] 𝚈𝙰 𝚁𝙴𝙲𝙻𝙰𝙼𝙰𝚂𝚃𝙴 𝚃𝚄 𝙲𝙾𝙵𝚁𝙴\𝚗𝚅𝚄𝙴𝙻𝚅𝙴 𝙴𝙽 *${msToTime(time - new Date())}* 𝙿𝙰𝚁𝙰 𝚅𝙾𝙻𝚅𝙴𝚁 𝙰 𝚁𝙴𝙲𝙻𝙰𝙼𝙰𝚁`
-
-let img = 'https://cdn.discordapp.com/attachments/1009154096588140605/1157519358910803998/9d7cff04-0a22-4d93-afba-19aa41348765.png?ex=6518e768&is=651795e8&hm=30f31f5df4d44759ca4d5add6cd2415150fc7d1121c1243dbfdf170039eefb98&'
-let dia = Math.floor(Math.random() * 30)
-let tok = Math.floor(Math.random() * 10)
-let hadesb = Math.floor(Math.random() * 4000)
-let expp = Math.floor(Math.random() * 5000)
-
-  global.db.data.users[m.sender].limit += dia
-  global.db.data.users[m.sender].money += hadesb
-  global.db.data.users[m.sender].joincount += tok
-  global.db.data.users[m.sender].exp += expp
-  
-let texto = `MAPA BERMUDA FREE FIRE 2023`
-
-const fkontak = {
-	"key": {
-    "participants":"0@s.whatsapp.net",
-		"remoteJid": "status@broadcast",
-		"fromMe": false,
-		"id": "Halo"
-	},
-	"message": {
-		"contactMessage": {
-			"vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
-		}
-	},
-	"participant": "0@s.whatsapp.net"
+let url = bermuda[Math.floor(Math.random() * pies.length)]
+conn.sendFile(m.chat, url, 'error.jpg', `*🔮 MAPA BERMUDA 🔮*`, m)
+//conn.sendButton(m.chat, `🔮 AGENDA SEMANAL 🔮`, author, url, [['𝙎𝙄𝙂𝙐𝙄𝙀𝙉𝙏𝙀 | 𝙉𝙀𝙓𝙏 🆕', `/${command}`]], m)
 }
-await conn.sendFile(m.chat, img, 'hades.jpg', texto, fkontak)
-//await conn.sendButton(m.chat, texto, wm, img, [['🔰 𝙼𝙴𝙽𝚄', '/menu'] ], fkontak, m)  
-global.db.data.users[m.sender].lastcofre = new Date * 1
-}
-handler.help = ['daily']
-handler.tags = ['xp']
-handler.command = ['bermuda', 'mapab', 'mapabermuda'] 
-handler.register = true
+handler.help = ['mapa']
+handler.tags = ['internet']
+handler.command = /^(bermuda|mapabermuda)$/
+handler.exp = 50
+handler.level = 0
 export default handler
 
-function pickRandom(list) {
-return list[Math.floor(Math.random() * list.length)]}
 
-function msToTime(duration) {
-  var milliseconds = parseInt((duration % 1000) / 100),
-    seconds = Math.floor((duration / 1000) % 60),
-    minutes = Math.floor((duration / (1000 * 60)) % 60),
-    hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
-
-  hours = (hours < 10) ? "0" + hours : hours
-  minutes = (minutes < 10) ? "0" + minutes : minutes
-  seconds = (seconds < 10) ? "0" + seconds : seconds
-
-  return hours + " Horas " + minutes + " Minutos"
-}
+global.bermuda = [
+"https://cdn.discordapp.com/attachments/1202339620939898981/1212926255805104168/fd5625b0f4f04149e343aea1045cb17d.jpg?ex=6651dfda&is=66508e5a&hm=a6af8f8815fe03b4d71b3249612af6c0fbb0e1eb3632fe86063d9394e8b97f5a&",
+]
