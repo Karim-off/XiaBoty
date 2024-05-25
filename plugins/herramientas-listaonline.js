@@ -15,7 +15,7 @@ let handler = async (m, { conn, args }) => {
       return self.indexOf(value) === index;
     });
     
-    conn.reply(m.chat, '*LISTA ONLINE*\n' + uniqueOnline.map(v => '┣・🔮 @' + v.replace(/@.+/, '')).join('\n') + '\n┗・ 𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮', m, {
+    conn.reply(m.chat, '┏・🔮 *LISTA ONLINE*\n' + uniqueOnline.map(v => '┣・🔮 @' + v.replace(/@.+/, '')).join('\n') + '\n┗・ 𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮', m, {
       contextInfo: { mentionedJid: uniqueOnline }
     })
   } catch (e) {
