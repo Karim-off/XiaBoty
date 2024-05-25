@@ -14,5 +14,5 @@ export default handler
 
 
 global.purgatorio = [
-"https://cdn.discordapp.com/attachments/1202339620939898981/1212928426982383646/NeXTerra.jpg?ex=6651e1e0&is=66509060&hm=a7ace01dc7a8de0779d99315c5dc12daf7007ba7de5a328b54d0e1b37f21ba95&",
+"https://cdn.discordapp.com/attachments/1202339620939898981/1212927293802946601/16d40be27a91dfbcc21f485b46c6eb23.jpg?ex=6651e0d1&is=66508f51&hm=d3c8463dbb89fc361c8c1ead5b96493f93731be3ec1d20aa04983a32a4c808fa&",
 ]
