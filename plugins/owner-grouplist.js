@@ -13,12 +13,12 @@ try {
     const participantStatus = isParticipant ? '👤 Participante' : '❌ Ex participante';
     const totalParticipants = participants.length;
     txt += `*◉ Grupo ${i + 1}*
-    *➤ Nombre:* ${await conn.getName(jid)}
-    *➤ ID:* ${jid}
-    *➤ Admin:* ${isBotAdmin ? '✔ Sí' : '❌ No'}
-    *➤ Estado:* ${participantStatus}
-    *➤ Total de Participantes:* ${totalParticipants}
-    *➤ Link:* ${isBotAdmin ? `https://chat.whatsapp.com/${await conn.groupInviteCode(jid) || '--- (Error) ---'}` : '--- (No admin) ---'}\n\n`;
+    *◦ Nombre:* ${await conn.getName(jid)}
+    *◦ ID:* ${jid}
+    *◦ Admin:* ${isBotAdmin ? '✔ Sí' : '❌ No'}
+    *◦ Estado:* ${participantStatus}
+    *◦ Total de Participantes:* ${totalParticipants}
+    *◦ Link:* ${isBotAdmin ? `https://chat.whatsapp.com/${await conn.groupInviteCode(jid) || '--- (Error) ---'}` : '--- (No admin) ---'}\n\n`;
   }
   m.reply(`*Lista de grupos del Bot* 🤖\n\n*—◉ Total de grupos:* ${totalGroups}\n\n${txt}`.trim());
 } catch {
