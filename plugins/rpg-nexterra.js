@@ -14,5 +14,5 @@ export default handler
 
 
 global.nexterra = [
-"https://cdn.discordapp.com/attachments/1009154096588140605/1157519438308970546/b9c2bdef-1927-465b-ada2-06957838134e.png?ex=6518e77b&is=651795fb&hm=6b429477eea15f33af62109bd6dd55d74586be9be3a61a3ac5ce8f29b596b0e1&",
+"https://cdn.discordapp.com/attachments/1202339620939898981/1212928426982383646/NeXTerra.jpg?ex=6651e1e0&is=66509060&hm=a7ace01dc7a8de0779d99315c5dc12daf7007ba7de5a328b54d0e1b37f21ba95&",
 ]
