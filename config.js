@@ -42,14 +42,14 @@ global.titulowm2 = `𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮`
 global.igfg = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
 global.wait = '🔮 𝘾𝙖𝙧𝙜𝙖𝙣𝙙𝙤....';
 
-global.lenguajeXB = es //idioma de xia
-
 global.imagen1 = fs.readFileSync('./Menu2.jpg');
 global.imagen2 = fs.readFileSync('./src/nuevobot.jpg');
 global.imagen3 = fs.readFileSync('./src/Pre Bot Publi.png');
 global.imagen4 = fs.readFileSync('./Menu.png');
 global.imagen5 = fs.readFileSync('./src/+18.jpg');
 global.imagen6 = fs.readFileSync('./Menu3.png');
+
+global.lenguajeXB = es //idioma de xia
 
 global.mods = [];
 
