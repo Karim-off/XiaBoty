@@ -34,8 +34,6 @@ global.owner = [
 global.suittag = ['5491140951814'];
 global.prems = ['5491140951814'];
 
-global.lenguajeGB = es //idioma de xia
-
 global.packname = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
 global.author = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
 global.wm = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
@@ -43,6 +41,8 @@ global.titulowm = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
 global.titulowm2 = `𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮`
 global.igfg = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
 global.wait = '🔮 𝘾𝙖𝙧𝙜𝙖𝙣𝙙𝙤....';
+
+global.lenguajeGB = es //idioma de xia
 
 global.imagen1 = fs.readFileSync('./Menu2.jpg');
 global.imagen2 = fs.readFileSync('./src/nuevobot.jpg');
