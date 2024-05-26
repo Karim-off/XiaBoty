@@ -16,7 +16,7 @@ const rl = createInterface(process.stdin, process.stdout);
 say('Xia\nBot\nMD', {
   font: 'block',
   align: 'center',
-  gradient: ['white', 'white']});
+  gradient: ['blue', 'blue']});
 say(`La mejor Bot de WhatsApp By: Angelito`, {
   font: 'console',
   align: 'center',
