@@ -380,14 +380,14 @@ global.reloadHandler = async function(restatConn) {
     conn.ev.off('creds.update', conn.credsUpdate);
   }
 
-conn.welcome = '-------------------------------------------------\n𝐏𝐎𝐋𝐕𝐎𝐑𝐀\n│HOLA @user\n│▢𝙱𝙸𝙴𝙽𝚅𝙴𝙽𝙸𝙳@\n│▢NUMERO DE MI CREADOR\n│https://wa.me/56954390663\n│OWNER\n│https://wa.me/573178206163\n│▢📚EN ESTE GRUPO PODRAS ENCONTRAR\n│▢🍀AMISTADES\n│▢🤝AMIGOS\n│▢📚DESMADRE\n│▢😇ᩭCOTORREO Y MAS\n│▢AVISO IMPORTANTE:\n𝙿𝚘𝚛 𝚏𝚊𝚟𝚘𝚛 𝙻𝚎𝚎 𝚕𝚊𝚜 𝚛𝚎𝚐𝚕𝚊𝚜 𝚍𝚎𝚕 𝚐𝚛𝚞𝚙𝚘 𝚙𝚊𝚛𝚊 𝚚𝚞𝚎 𝚎𝚟𝚒𝚝𝚎𝚜 𝚜𝚎𝚛 𝚎𝚕𝚒𝚖𝚒𝚗𝚊𝚍𝚘 𝚢 𝚎𝚟𝚒𝚝𝚎𝚜 𝚝𝚎𝚗𝚎𝚛 𝚙𝚛𝚘𝚋𝚕𝚎𝚖𝚊𝚜 𝚌𝚘𝚗 𝚌𝚛𝚎𝚊𝚍𝚘𝚛 𝚍𝚎𝚕 𝚐𝚛𝚞𝚙𝚘\n@desc\n𝐏𝐎𝐋𝐕𝐎𝐑𝐀\n-------------------------------------------------'
-conn.bye = '-------------------------------------------------\n@user\n𝐒𝐚𝐥𝐢ó 𝐝𝐞𝐥 𝐠𝐫𝐮𝐩𝐨 𝐧𝐢 𝐦𝐨𝐝𝐨 𝐪𝐮𝐞 𝐭𝐞 𝐯𝐚𝐲𝐚 𝐛𝐢𝐞𝐧 𝐇𝐚𝐬𝐭𝐚 𝐥𝐚 𝐩𝐫ó𝐱𝐢𝐦𝐚 𝐪𝐮𝐞 𝐃𝐢𝐨𝐬 𝐭𝐞 𝐛𝐞𝐧𝐝𝐢𝐠𝐚🌱\n\n *HE LEFT THE GROUP NO WAY THAT YOU GO WELL UNTIL THE NEXT TIME GOD BLESS YOU*\n𝐏𝐎𝐋𝐕𝐎𝐑𝐀\n-------------------------------------------------'
-conn.spromote = '@user 𝘼𝙃𝙊𝙍𝘼 𝙀𝙎 𝘼𝘿𝙈𝙄𝙉!!!'
-conn.sdemote = '@user 𝘿𝙀𝙅𝙊 𝘿𝙀 𝙎𝙀𝙍 𝘼𝘿𝙈𝙄𝙉!!!'
-conn.sDesc = '𝙎𝙀 𝙃𝘼 𝙈𝙊𝘿𝙄𝙁𝙄𝘾𝘼𝘿𝙊 𝙇𝘼 𝘿𝙀𝙎𝘾𝙍𝙄𝙋𝘾𝙄𝙊𝙉!!! @desc'
-conn.sSubject = '𝙎𝙀 𝙃𝘼 𝙈𝙊𝘿𝙄𝙁𝙄𝘾𝘼𝘿𝙊 𝙀𝙇 𝙉𝙊𝙈𝘽𝙍𝙀 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊!!! @subject'
-conn.sIcon = '𝙎𝙀 𝙃𝘼 𝙈𝙊𝘿𝙄𝙁𝙄𝘾𝘼𝘿𝙊 𝙇𝘼 𝙁𝙊𝙏𝙊 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊!!!'
-conn.sRevoke = '𝙎𝙀 𝙃𝘼 𝙈𝙊𝘿𝙄𝙁𝙄𝘾𝘼𝘿𝙊 𝙀𝙇 𝙇𝙄𝙉𝙆 𝘿𝙀𝙇 𝙂𝙍𝙐𝙋𝙊!!!: @revoke'
+conn.welcome = lenguajeXB['smsWelcome']() 
+conn.bye = lenguajeXB['smsBye']() 
+conn.spromote = lenguajeXB['smsSpromote']() 
+conn.sdemote = lenguajeXB['smsSdemote']() 
+conn.sDesc = lenguajeXB['smsSdesc']() 
+conn.sSubject = lenguajeXB['smsSsubject']() 
+conn.sIcon = lenguajeXB['smsSicon']() 
+conn.sRevoke = lenguajeXB['smsSrevoke']() 
 
   conn.handler = handler.handler.bind(global.conn);
   conn.participantsUpdate = handler.participantsUpdate.bind(global.conn);
