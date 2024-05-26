@@ -1,4 +1,4 @@
-import { tiktokdl } from '../lib/capcut.js'
+import { tiktokdl } from '../lib/tiktok.js'
 let handler = async (m, { conn, args, text, usedPrefix, command }) => { 
   if (!args[0]) throw `*ejemplo:* ${usedPrefix+command} https://vm.tiktok.com/ZMME5XBt3/`;
   let data = await tiktokdl(text);
