@@ -20,7 +20,7 @@ say('Xia\nBot\nMD', {
 say(`La mejor Bot de WhatsApp By: Angelito`, {
   font: 'console',
   align: 'center',
-  gradient: ['blue', 'magenta']});
+  gradient: ['blue', 'blue']});
 
 let isRunning = false;
 /**
