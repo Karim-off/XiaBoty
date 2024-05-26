@@ -18,7 +18,7 @@ const rl = createInterface(process.stdin, process.stdout)
 say('Xia\nBot\nMD', {
 font: 'block',
 align: 'center',
-colors: ['system', 'purpleBright']
+colors: ['system', 'redBright']
 })
 say(`la mejor bot de whatsapp, by: XiaBot`, {
 font: 'console',
