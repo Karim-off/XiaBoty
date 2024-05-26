@@ -34,6 +34,8 @@ global.owner = [
 global.suittag = ['5491140951814'];
 global.prems = ['5491140951814'];
 
+global.lenguajeGB = es //idioma de xia
+
 global.packname = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
 global.author = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
 global.wm = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
