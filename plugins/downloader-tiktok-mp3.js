@@ -5,7 +5,7 @@ let handler = async (m, { conn, args, text, usedPrefix, command }) => {
   await conn.sendMessage(m.chat, { react: { text: "â³", key: m.key } });
 conn.sendMessage(m.chat, { audio: { url: data.originalVideoUrl }, mimetype: 'audio/mpeg', fileName: `${data.title}.mp3` }, { quoted: m })
 }
-handler.help = ['capcutmp3', 'capcutaudio'].map(v => v + ' <url>')
+handler.help = ['tiktokmp3', 'tiktokaudio'].map(v => v + ' <url>')
 handler.tags = ['downloader']
-handler.command = /^(capcutaudio|capcutmp3|)$/i
+handler.command = /^(tiktokaudio|tiktokmp3|)$/i
 export default handler
