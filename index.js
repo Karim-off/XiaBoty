@@ -18,9 +18,9 @@ say('Xia\nBot\nMD', {
   align: 'center',
   gradient: ['system', 'redBright']});
 say(`La mejor bot de WhatsApp By:angelito`, {
-  font: 'block',
+  font: 'console',
   align: 'center',
-  gradient: ['system', 'redBright']});
+  gradient: ['blue', 'magenta']});
 
 let isRunning = false;
 /**
