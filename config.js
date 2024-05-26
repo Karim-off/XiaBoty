@@ -42,7 +42,7 @@ global.titulowm2 = `𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮`
 global.igfg = '𝙓𝙞𝙖𝘽𝙤𝙩-𝙈𝘿 🔮';
 global.wait = '🔮 𝘾𝙖𝙧𝙜𝙖𝙣𝙙𝙤....';
 
-global.lenguajeGB = es //idioma de xia
+global.lenguajeXB = es //idioma de xia
 
 global.imagen1 = fs.readFileSync('./Menu2.jpg');
 global.imagen2 = fs.readFileSync('./src/nuevobot.jpg');
