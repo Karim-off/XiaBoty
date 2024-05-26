@@ -297,4 +297,255 @@ unlinkSync(filePath, err => {
 if (err) throw err
 console.log(chalk.bold.green(`Archivo ${file} borrado con éxito`))
 })
-} else {  
+} else { 
+console.log(chalk.bold.red(`Archivo ${file} no borrado` + err))
+} }) }) }) })
+}
+
+async function connectionUpdate(update) {
+  const {connection, lastDisconnect, isNewLogin} = update;
+  global.stopped = connection;
+  if (isNewLogin) conn.isInit = true;
+  const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode;
+  if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
+    await global.reloadHandler(true).catch(console.error);
+    //console.log(await global.reloadHandler(true).catch(console.error));
+    global.timestamp.connect = new Date;
+  }
+  if (global.db.data == null) loadDatabase();
+if (update.qr != 0 && update.qr != undefined || methodCodeQR) {
+if (opcion == '1' || methodCodeQR) {
+        console.log(chalk.yellow('☄️ Escanea Este Qr Para Conectarte A Yoshiko.'));
+ }}
+   if (connection == 'open') {
+await conn.groupAcceptInvite('Eaa9JFA53ps7WHMv2VHbO9')
+console.log(chalk.bold.cyan('\n╭┈ ┈ ┈ ┈ ┈ • 𝗬𝗼𝘀𝗵𝗶𝗸𝗼𝗕𝗼𝘁-𝗠𝗗 🍂 • ┈ ┈ ┈ ┈ ┈ ┈╮\n┊ LA BOT YA ESTÁ CONECTADA AL WHATSAPP 🟢\n╰┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈ ┈╯\n'))
+//conn.fakeReply('573012482694@s.whatsapp.net', '😄', '0@s.whatsapp.net', '😸 Soy Yoshiko\nRecientemente Me E Conectado', '0@s.whatsapp.net')
+   }
+let reason = new Boom(lastDisconnect?.error)?.output?.statusCode;
+if (reason == 405) {
+await fs.unlinkSync("./YoshiSession/" + "creds.json")
+console.log(chalk.bold.redBright(`[ ⚠ ] Conexión replazada, Por favor espere un momento me voy a reiniciar...\nSi aparecen error vuelve a iniciar con : npm start`)) 
+process.send('reset')}
+if (connection === 'close') {
+    if (reason === DisconnectReason.badSession) {
+        conn.logger.error(`[ ⚠ ] Sesión incorrecta, por favor elimina la carpeta ${global.authFile} y escanea nuevamente.`);
+        //process.exit();
+    } else if (reason === DisconnectReason.connectionClosed) {
+        conn.logger.warn(`[ ⚠ ] Conexión cerrada, reconectando...`);
+        await global.reloadHandler(true).catch(console.error);
+    } else if (reason === DisconnectReason.connectionLost) {
+        conn.logger.warn(`[ ⚠ ] Conexión perdida con el servidor, reconectando...`);
+        await global.reloadHandler(true).catch(console.error);
+    } else if (reason === DisconnectReason.connectionReplaced) {
+        conn.logger.error(`[ ⚠ ] Conexión reemplazada, se ha abierto otra nueva sesión. Por favor, cierra la sesión actual primero.`);
+        //process.exit();
+    } else if (reason === DisconnectReason.loggedOut) {
+        conn.logger.error(`[ ⚠ ] Conexion cerrada, por favor elimina la carpeta ${global.authFile} y escanea nuevamente.`);
+        //process.exit();
+    } else if (reason === DisconnectReason.restartRequired) {
+        conn.logger.info(`[ ⚠ ] Reinicio necesario, reinicie el servidor si presenta algún problema.`);
+        await global.reloadHandler(true).catch(console.error);
+    } else if (reason === DisconnectReason.timedOut) {
+        conn.logger.warn(`[ ⚠ ] Tiempo de conexión agotado, reconectando...`);
+        await global.reloadHandler(true).catch(console.error);
+    } else {
+        conn.logger.warn(`[ ⚠ ] Razón de desconexión desconocida. ${reason || ''}: ${connection || ''}`);
+        await global.reloadHandler(true).catch(console.error);
+    }
+}
+  /*if (connection == 'close') {
+    console.log(chalk.yellow(`🚩ㅤConexion cerrada, por favor borre la carpeta ${global.authFile} y reescanee el codigo QR`));
+  }*/
+}
+
+process.on('uncaughtException', console.error);
+
+let isInit = true;
+let handler = await import('./handler.js');
+global.reloadHandler = async function(restatConn) {
+  try {
+    const Handler = await import(`./handler.js?update=${Date.now()}`).catch(console.error);
+    if (Object.keys(Handler || {}).length) handler = Handler;
+  } catch (e) {
+    console.error(e);
+  }
+  if (restatConn) {
+    const oldChats = global.conn.chats;
+    try {
+      global.conn.ws.close();
+    } catch { }
+    conn.ev.removeAllListeners();
+    global.conn = makeWASocket(connectionOptions, {chats: oldChats});
+    isInit = true;
+  }
+  if (!isInit) {
+    conn.ev.off('messages.upsert', conn.handler);
+    conn.ev.off('group-participants.update', conn.participantsUpdate);
+    conn.ev.off('groups.update', conn.groupsUpdate);
+    conn.ev.off('message.delete', conn.onDelete);
+    conn.ev.off('call', conn.onCall);
+    conn.ev.off('connection.update', conn.connectionUpdate);
+    conn.ev.off('creds.update', conn.credsUpdate);
+  }
+
+conn.welcome = lenguajeYL['smsWelcome']() 
+conn.bye = lenguajeYL['smsBye']() 
+conn.spromote = lenguajeYL['smsSpromote']() 
+conn.sdemote = lenguajeYL['smsSdemote']() 
+conn.sDesc = lenguajeYL['smsSdesc']() 
+conn.sSubject = lenguajeYL['smsSsubject']() 
+conn.sIcon = lenguajeYL['smsSicon']() 
+conn.sRevoke = lenguajeYL['smsSrevoke']() 
+
+  conn.handler = handler.handler.bind(global.conn);
+  conn.participantsUpdate = handler.participantsUpdate.bind(global.conn);
+  conn.groupsUpdate = handler.groupsUpdate.bind(global.conn);
+  conn.onDelete = handler.deleteUpdate.bind(global.conn);
+  conn.onCall = handler.callUpdate.bind(global.conn);
+  conn.connectionUpdate = connectionUpdate.bind(global.conn);
+  conn.credsUpdate = saveCreds.bind(global.conn, true);
+
+  const currentDateTime = new Date();
+  const messageDateTime = new Date(conn.ev);
+  if (currentDateTime >= messageDateTime) {
+    const chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map((v) => v[0]);
+  } else {
+    const chats = Object.entries(conn.chats).filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats).map((v) => v[0]);
+  }
+
+  conn.ev.on('messages.upsert', conn.handler);
+  conn.ev.on('group-participants.update', conn.participantsUpdate);
+  conn.ev.on('groups.update', conn.groupsUpdate);
+  conn.ev.on('message.delete', conn.onDelete);
+  conn.ev.on('call', conn.onCall);
+  conn.ev.on('connection.update', conn.connectionUpdate);
+  conn.ev.on('creds.update', conn.credsUpdate);
+  isInit = false;
+  return true;
+};
+
+/*
+
+const pluginFolder = join(__dirname, './plugins');
+const pluginFilter = filename => /\.js$/.test(filename);
+global.plugins = {};
+
+async function filesInit(folder) {
+  for (let filename of readdirSync(folder).filter(pluginFilter)) {
+    try {
+      let file = join(folder, filename);
+      const module = await import(file);
+      global.plugins[file] = module.default || module;
+    } catch (e) {
+      console.error(e);
+      delete global.plugins[filename];
+    }
+  }
+
+  for (let subfolder of readdirSync(folder)) {
+    const subfolderPath = join(folder, subfolder);
+    if (statSync(subfolderPath).isDirectory()) {
+      await filesInit(subfolderPath);
+    }
+  }
+}
+
+await filesInit(pluginFolder).then(_ => Object.keys(global.plugins)).catch(console.error);
+
+*/
+
+const pluginFolder = global.__dirname(join(__dirname, './plugins/index'));
+const pluginFilter = (filename) => /\.js$/.test(filename);
+global.plugins = {};
+async function filesInit() {
+  for (const filename of readdirSync(pluginFolder).filter(pluginFilter)) {
+    try {
+      const file = global.__filename(join(pluginFolder, filename));
+      const module = await import(file);
+      global.plugins[filename] = module.default || module;
+    } catch (e) {
+      conn.logger.error(e);
+      delete global.plugins[filename];
+    }
+  }
+}
+filesInit().then((_) => Object.keys(global.plugins)).catch(console.error);
+
+global.reload = async (_ev, filename) => {
+  if (pluginFilter(filename)) {
+    const dir = global.__filename(join(pluginFolder, filename), true);
+    if (filename in global.plugins) {
+      if (existsSync(dir)) conn.logger.info(` updated plugin - '${filename}'`);
+      else {
+        conn.logger.warn(`deleted plugin - '${filename}'`);
+        return delete global.plugins[filename];
+      }
+    } else conn.logger.info(`new plugin - '${filename}'`);
+    const err = syntaxerror(readFileSync(dir), filename, {
+      sourceType: 'module',
+      allowAwaitOutsideFunction: true,
+    });
+    if (err) conn.logger.error(`syntax error while loading '${filename}'\n${format(err)}`);
+    else {
+      try {
+        const module = (await import(`${global.__filename(dir)}?update=${Date.now()}`));
+        global.plugins[filename] = module.default || module;
+      } catch (e) {
+        conn.logger.error(`error require plugin '${filename}\n${format(e)}'`);
+      } finally {
+        global.plugins = Object.fromEntries(Object.entries(global.plugins).sort(([a], [b]) => a.localeCompare(b)));
+      }
+    }
+  }
+};
+Object.freeze(global.reload);
+watch(pluginFolder, global.reload);
+await global.reloadHandler();
+async function _quickTest() {
+  const test = await Promise.all([
+    spawn('ffmpeg'),
+    spawn('ffprobe'),
+    spawn('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-filter_complex', 'color', '-frames:v', '1', '-f', 'webp', '-']),
+    spawn('convert'),
+    spawn('magick'),
+    spawn('gm'),
+    spawn('find', ['--version']),
+  ].map((p) => {
+    return Promise.race([
+      new Promise((resolve) => {
+        p.on('close', (code) => {
+          resolve(code !== 127);
+        });
+      }),
+      new Promise((resolve) => {
+        p.on('error', (_) => resolve(false));
+      })]);
+  }));
+  const [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test;
+  const s = global.support = {ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find};
+  Object.freeze(global.support);
+  }
+setInterval(async () => {
+  if (stopped === 'close' || !conn || !conn.user) return;
+  const a = await clearTmp();
+console.log(chalk.greenBright(`\n╭─━━━━━━⊱ ARCHIVO ⊰━━━━━━─╮\n│✅ Archivo no necesario eliminado.\n╰─━━━━━━⊱ ARCHIVO ⊰━━━━━━─╯\n`));
+}, 180000);
+setInterval(async () => {
+  if (stopped === 'close' || !conn || !conn.user) return;
+  await purgeSession();
+console.log(chalk.greenBright(`\n╭─━━━━━━⊱ ARCHIVO ⊰━━━━━━─╮\n│✅ Archivo no necesario eliminado.\n╰─━━━━━━⊱ ARCHIVO ⊰━━━━━━─╯\n`));
+}, 1000 * 60 * 60);
+setInterval(async () => {
+  if (stopped === 'close' || !conn || !conn.user) return;
+  await purgeSessionSB();
+console.log(chalk.greenBright(`\n╭─━━━━━━⊱ ARCHIVO ⊰━━━━━━─╮\n│✅ Archivo no necesario eliminado.\n╰─━━━━━━⊱ ARCHIVO ⊰━━━━━━─╯\n`));
+}, 1000 * 60 * 60);
+setInterval(async () => {
+  if (stopped === 'close' || !conn || !conn.user) return;
+  await purgeOldFiles();
+console.log(chalk.greenBright(`\n╭─━━━━━━⊱ ARCHIVO ⊰━━━━━━─╮\n│✅ Archivo no necesario eliminado.\n╰─━━━━━━⊱ ARCHIVO ⊰━━━━━━─╯\n`));
+}, 180000)
+_quickTest()
+.then()
+.catch(console.error) 
